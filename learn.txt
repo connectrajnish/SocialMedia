@@ -1,0 +1,27 @@
+Therory
+# interpolation: insertion of some content into the object like string itself
+done using `$(content to be evaluated eg. 2+2)`
+
+# add "start": "nodemon index.js" inside script of package
+
+#
+
+
+
+
+for scalabilty make differnt directory like
+routes: contains home profile etc
+controller: 
+views
+models:schemas etc.
+config
+
+initiate the project as git repository asap to track changes
+
+install express and fireup the server
+
+use const variables so that it doesn't get overridden 
+by default on a production level port 80 is used
+
+
+
