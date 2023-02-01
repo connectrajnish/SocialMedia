@@ -4,10 +4,8 @@ const port = process.env.port || 8080;
 //fireup the app
 const app = express();
 
-// create routes
-app.get('/',function(req,res){
-    res.end('Hello');
-});
+//add a middleware module for all the routes using express router
+app.use('/',require('./routes')); //by default it takes index.js file
 
 
 //start listening on the port

@@ -4,9 +4,20 @@ done using `$(content to be evaluated eg. 2+2)`
 
 # add "start": "nodemon index.js" inside script of package
 
-#
+#app.all('/user',function(){});
+here all will accept all the method like put,post,get etc. for the '/user' url
 
+#if a package is required in multiple files then it'll not be created sepertaly multiple times rather it'll be just a single instance of the package
 
+#action
+action taken for a route. eg. as follows
+app.get('/user',function(){});
+
+#controller
+many actions in file is known as controller i.e. set of actions.
+
+#app.set
+it is an object where we can set various properties like views, view engine
 
 
 for scalabilty make differnt directory like
@@ -23,5 +34,20 @@ install express and fireup the server
 use const variables so that it doesn't get overridden 
 by default on a production level port 80 is used
 
+some urls have some common part so like profile,message etc. then keep it in some other routes under the common name
+/users/profile or /users/create then keep all these routes in users.js
+so basically we are separating the controller and routes
+In controller folder index.js route will take to the differnet routes
+
+Express Router
+It's a module
+
+create a router using express.Router() in index.js-controller
+create a home controller
+import this controller into router
+now router will access to the home_controller exported functions
+so basically server to a router to differnet controllers and from there to differnet actions
 
 
+#setting up views
+html skelton will be sent from a html file using views engine EJS
