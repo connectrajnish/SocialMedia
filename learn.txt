@@ -19,6 +19,12 @@ many actions in file is known as controller i.e. set of actions.
 #app.set
 it is an object where we can set various properties like views, view engine
 
+#authentication
+cookie working
+
+
+
+
 
 for scalabilty make differnt directory like
 routes: contains home profile etc
