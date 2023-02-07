@@ -29,4 +29,5 @@ const userSchema= new mongoose.Schema({
 
 //collection name
 const User = mongoose.model('User', userSchema);
+
 module.exports = User;
