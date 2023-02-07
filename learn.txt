@@ -19,12 +19,38 @@ many actions in file is known as controller i.e. set of actions.
 #app.set
 it is an object where we can set various properties like views, view engine
 
+
+#to create a page
+  i) add a page in route including express, router
+ ii) add the route to main route using router.use() 
+iii) add it's controller
+ iv) add views of the page
+  v) render using action in the controller and export it so that it can be used in the route
+
+#connecting backend server with database
+  M- I. Connecting with MongoDB native driver
+  M-II. Connecting with Mongoose
+  https://zellwk.com/blog/local-mongodb/
+
+
+
+
 #authentication
-cookie working
+  cookie working
+  1. create user (sign up)
+  2. create session (sign in)
+  3. show details of signed in user
+  4. sign out
+  
+  **In manual authentication, there are loop holes like going back to the sign in page if we are alreasy sign in
+    show user name and email on the profile page
+    user acces to profile then only show else take back to sign in page
 
-
-
-
+#authentication using passport js
+  npm install passport
+  npm install passport-local  //for username nd password
+  passport.js uses session cookie(stores all the session info and it's encrypted)
+  create a configuration file for passport
 
 for scalabilty make differnt directory like
 routes: contains home profile etc
