@@ -42,6 +42,9 @@ iii) add it's controller
   3. show details of signed in user
   4. sign out
   
+  **Always store the cookie in DB too else all the users will be logged out bcz of cookie not stored in the server and hence authentication fails
+      TO do that, mongostore and a library connect-mongo
+
   **In manual authentication, there are loop holes like going back to the sign in page if we are alreasy sign in
     show user name and email on the profile page
     user acces to profile then only show else take back to sign in page
@@ -50,7 +53,21 @@ iii) add it's controller
   npm install passport
   npm install passport-local  //for username nd password
   passport.js uses session cookie(stores all the session info and it's encrypted)
-  create a configuration file for passport
+  create a configuration file for passport including following
+      require passport and passport-local Startegy
+      add it as a middleware passport.use(new Startegy, callback function)
+      Inside callback function, userField and password matching, email finding et. is done 
+      serialize user function and deserialize user function
+      export passport
+  Express session library encrypts and stores in cookie done by passport
+  so include express-session library, passport, passport-local in the server index.js
+  
+
+
+
+
+
+
 
 for scalabilty make differnt directory like
 routes: contains home profile etc
