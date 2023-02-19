@@ -11,11 +11,19 @@
 
     <!-- User's Feed -->
     <section id="feed-post">
-        <form action="" id="new-post-form" method="post">
-            <textarea name="content" cols="30" rows="10" placeholder="Your Content goes here..."></textarea>
+        <form action="/posts/create" id="new-post-form" method="post">
+            <textarea name="content" cols="30" rows="10" placeholder="Your Content goes here..." required></textarea>
             <button type="submit">Post</button>
         </form>
     </section>
-    
+    <div id="posts-list-container">
+        <ul>
+            <%for(post of posts){%>
+                <li>
+                    <%=post.content%>
+                </li>
+            <%}%>
+        </ul>
+    </div>
 </body>
 </html>
