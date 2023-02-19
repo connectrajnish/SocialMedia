@@ -21,6 +21,11 @@
             <%for(post of posts){%>
                 <li>
                     <%=post.content%>
+                    <p>
+                    <small>
+                        <%=post.user.name%>
+                    </small>
+                </p>
                 </li>
             <%}%>
         </ul>

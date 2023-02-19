@@ -63,6 +63,8 @@ iii) add it's controller
   so include express-session library, passport, passport-local in the server index.js
   
 
+Fetching whole user to display desired data only
+Mongoose populate is used
 
 
 
@@ -100,3 +102,17 @@ so basically server to a router to differnet controllers and from there to diffe
 
 #setting up views
 html skelton will be sent from a html file using views engine EJS
+
+Creating post page
+Create a DB Schema
+Create a form
+Set posts_controller
+set routes of it
+
+render posts from database
+require db model
+Post.find({},function(err, post){}) // it fetches all the post
+
+Show the user one who posted
+Use mongoose populate
+Post.find({}).populate.exec(callbackFunctionGoesHereWith Arg err and post)
