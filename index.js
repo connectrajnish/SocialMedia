@@ -19,6 +19,14 @@ const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo')(session);   //express session is an argument bcz this session info we need to store into db
 
 
+//using saas
+// const sass = require('node-sass');
+// app.use({
+//     src: './assets/scss',
+//     dest: './assets/css',
+//     debug: true
+//   }, function(err, result) { /*...*/ });
+
 
 //parses incoming requests with urlencoded payloads
 app.use(express.urlencoded({ extended: true}));
