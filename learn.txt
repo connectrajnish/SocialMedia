@@ -116,3 +116,10 @@ Post.find({},function(err, post){}) // it fetches all the post
 Show the user one who posted
 Use mongoose populate
 Post.find({}).populate.exec(callbackFunctionGoesHereWith Arg err and post)
+
+restricting user to post without sign in
+M-1 show the form to those who has signed in
+if(locals.user){form here}
+but the problem here is that if the user knows that after signing in user the content is sent to which url
+then from developer tool user can create a form and can send the details to that url without signing in 
+so the solution is to put a check at the route level that before going to the controller check authentication for posting to db

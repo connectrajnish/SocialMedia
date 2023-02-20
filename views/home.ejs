@@ -8,15 +8,22 @@
 </head>
 <body>
     <h1>Home page rendered from EJS.</h1>
-
+    <li>
+        <a href="/users/sign-in">Sign In</a>
+    </li>
+    <li>
+        <a href="/users/sign-up">Sign Up</a>
+    </li>
     <!-- User's Feed -->
     <section id="feed-post">
+        <%if(locals.user){%>
         <form action="/posts/create" id="new-post-form" method="post">
             <textarea name="content" cols="30" rows="10" placeholder="Your Content goes here..." required></textarea>
             <button type="submit">Post</button>
         </form>
+        <%}%>
     </section>
-    <div id="posts-list-container">
+    <div id="posts-list-container"> 
         <ul>
             <%for(post of posts){%>
                 <li>
