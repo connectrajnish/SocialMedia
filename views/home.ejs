@@ -8,12 +8,21 @@
 </head>
 <body>
     <h1>Home page rendered from EJS.</h1>
-    <li>
-        <a href="/users/sign-in">Sign In</a>
-    </li>
-    <li>
-        <a href="/users/sign-up">Sign Up</a>
-    </li>
+    <%if(!locals.user){%>
+        <li>
+            <a href="/users/sign-in">Sign In</a>
+        </li>
+        <li>
+            <a href="/users/sign-up">Sign Up</a>
+        </li>
+    <%}%>
+
+    <%if(locals.user){%>
+        <li>
+            <a href="/users/profile"><%=user.name%></a>
+        </li>
+    <%}%>
+
     <!-- User's Feed -->
     <section id="feed-post">
         <%if(locals.user){%>
@@ -32,7 +41,18 @@
                     <small>
                         <%=post.user.name%>
                     </small>
-                </p>
+                    </p>
+
+                    <!-- Adding coment -->
+                    <div class="post-comments">
+                    <%if(locals.user){%>
+                        <form action="/comments/create" method="post">
+                            <textarea name="content" cols="10" rows="2" placeholder="comment here..." required></textarea>
+                            <input type="hidden" name="postId" value="<%=post._id%>">        <!-- sending the post id for which comment need t be added -->
+                            <button type="submit">Comment</button>
+                        </form>
+                        <%}%>
+                    </div>
                 </li>
             <%}%>
         </ul>

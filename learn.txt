@@ -123,3 +123,21 @@ if(locals.user){form here}
 but the problem here is that if the user knows that after signing in user the content is sent to which url
 then from developer tool user can create a form and can send the details to that url without signing in 
 so the solution is to put a check at the route level that before going to the controller check authentication for posting to db
+
+Dealing with comments
+here the DB Relation is
+user to post is 1:many relation and post to comment is also 1 : many
+
+              / comment 1
+     / POST1 -  comment 2
+USER - POST1  \ comment 3
+     \ POST1
+
+in post schema there was a refernce to the user that whom does this post belong to
+so in comment schema there should be two refernces that who has posted the comment and under which post it has been posted
+but since we are using mongodb i.e. a json db we can use an comment array in post schema which can store all the comment and refernces to user but it can be hectic to fetch a post then it's all comment and then for each comment fetch user
+so using an seprate schema is good only which can easily tell all the comments of a user otherwise we could go with just above method too
+alongwith include the ids of all the comments in the post schema too because we need to fetch it very frequent and in such cases we don't need to scan the wholoe collection and finding out which comment is referencing to this post which could be a time consuming thing. so storing refernce is beneficial
+now make a controller for the comment creation via including the user & comment model
+
+whenever we update something in db then we need to call save after pushing or updating. The save() function is used to save the document to the database.

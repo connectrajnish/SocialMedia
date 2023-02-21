@@ -14,7 +14,7 @@ router.use('/users',require('./users'));
 // whenever the path is '/posts' then use this controller
 router.use('/posts',require('./posts'));
 
-
+router.use('/comments', require('./comments'));
 
 
 
