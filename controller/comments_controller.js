@@ -12,8 +12,9 @@ module.exports.create = function(req,res){
             //then create a comment in db
             Comment.create({
                 content : req.body.content,
-                post:req.body.post,
+                post:post._id,
                 user: req.user._id
+                //console.log(req.body._id);
             }, function(err, comment){
                 if(err){
                     console.log('Error', err);
