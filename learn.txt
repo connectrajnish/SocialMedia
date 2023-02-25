@@ -158,3 +158,9 @@ loading the comment and author on the post
       }
 
     }
+
+Deleting a particular comment
+create route and action then delete button in view with authorization checks enabled
+
+as our codebase grows the number of lines in a file grows so we can distribute the larger file into smaller file
+  so we can create partials for larger files

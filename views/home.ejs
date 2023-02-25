@@ -61,6 +61,13 @@
                                     
                                 <p>
                                     <%= comment.content %>
+                                    <!-- To delete a comment -->
+                                    <!-- either the commenter or the poster can delete the comment -->
+                                    <%if(locals.user && (locals.user.id == comment.user.id || locals.user.id == post.id)){%>
+                                        <small>
+                                        <a href="/comments/destroy/<%=comment.id%>">X</a>
+                                        </small>
+                                        <%}%>
                                     <br>
                                     <small>
                                         <%= comment.user.name %>

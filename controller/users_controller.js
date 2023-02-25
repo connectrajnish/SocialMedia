@@ -4,7 +4,8 @@ const User = require('../models/users');
 
 module.exports.profile = function(req,res){
     return res.render('users',{
-        title:'profile'
+        title:'profile',
+        // user : 'req.user'        //page rendering without logging in
     });
 };
 
@@ -65,8 +66,11 @@ module.exports.create = function(req,res){
 module.exports.createSession = function(req, res){
     // return res.redirect('/');
     return res.render('users',{
-        title: 'Profile Page'
-        //user is now available is locals, passed from passport config after authentication
+        title: 'Profile Page',   //user is now available in locals, passed from passport config after authentication
+        user : {
+            'name': req.user.name,
+            'email' : req.user.email
+        }
     });
 };
 

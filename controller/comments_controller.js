@@ -32,3 +32,31 @@ module.exports.create = function(req,res){
         timestamps: true
     });
 }
+
+module.exports.destroy = function(req, res){
+    //check if the comment actually exists or not
+    Comment.findById(req.body.postId, function(err, comment){
+        if(err){
+            console.log(err);
+            return;
+        }
+        if(comment){
+            //if the comment is found
+            const idOfpostToDelete = comment.post;
+
+            //either the commenter or the poster can delete the comment
+            if(comment.user == req.user.id || idOfpostToDelete.user == req.user.id){
+                comment.remove();
+                
+                //pull out the comment Id from a list of comment 
+                //$pull native mongodb syntax fo command line interface given by mongoose as well
+                Post.findByIdAndUpdate(idOfpostToDelete, {$pull: {comments: req.params.id}, function(err, post){
+                    return res.redirect('back');
+                }});
+            }    
+        }
+        else{
+            return res.redirect('back');
+        }
+    });
+}
