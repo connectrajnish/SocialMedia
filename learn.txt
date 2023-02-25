@@ -124,6 +124,8 @@ but the problem here is that if the user knows that after signing in user the co
 then from developer tool user can create a form and can send the details to that url without signing in 
 so the solution is to put a check at the route level that before going to the controller check authentication for posting to db
 
+populate(), which lets you reference documents in other collections.
+
 Dealing with comments
 here the DB Relation is
 user to post is 1:many relation and post to comment is also 1 : many
@@ -141,3 +143,18 @@ alongwith include the ids of all the comments in the post schema too because we 
 now make a controller for the comment creation via including the user & comment model
 
 whenever we update something in db then we need to call save after pushing or updating. The save() function is used to save the document to the database.
+creating comment summary: 
+create schema, check if the post exist then create the comment
+
+loading the comment and author on the post
+  preload comments and then show the comment
+  How to preload/populate multiple models like showing the comment and user of the comment?
+    .populate{
+      path: 'comments', //comment array is loaded
+      //further populate the user
+      populate: {
+        path: 'user'
+        //further nesting can be done to populate
+      }
+
+    }

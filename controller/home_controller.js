@@ -12,10 +12,35 @@ module.exports.home=function(req,res){                      //home, a name give 
     //     });
     // });
     //rendering posts who has posted the post alongwith POST
-    Post.find({}).populate('user').exec(function(err, posts){
+    
+    //populate(), lets you reference documents in other collections.
+    // Post.find({}).populate([{
+    //     path: 'user',
+    //     populate: {
+    //         path: 'comments',   //references to comments array of post model
+    //         populate: {
+    //             path: 'user'    //references to user in post model
+    //         }
+    //     }
+    // }])
+    Post.find({})
+    .populate('user')
+    //to load comments
+    // .populate({
+    //     path: 'comments',
+    //     populate: {
+    //         path: 'user'
+    //     }
+    // })
+    .exec(function(err, allPosts){
             return res.render('home',{
                 title:'Home',
-                posts: posts
+                posts: allPosts
             });
-        });
+    });
 };
+
+// .populate([{
+//     path : 'comments',
+    
+// }])

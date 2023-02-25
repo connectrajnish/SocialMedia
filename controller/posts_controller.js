@@ -1,5 +1,6 @@
 //it is  controller for posts
 const Post = require('../models/post');
+const  Comment = require('../models/comments');
 
 module.exports.posts=function(req,res){
     return res.render('posts',{
@@ -21,4 +22,34 @@ module.exports.create = function(req,res){
         res.redirect('back');
     }
     );
+};
+
+//deleting
+/*
+BEFORE DELETING A POST FIND EXISTENCE OF IT IN THE DATABASE
+compare the post user and requested id in string format
+if same then remove the post and all comments
+else
+redirect back
+
+
+
+*/
+module.exports.destroy = function(req,res){
+    Post.findById(req.params.id, function(err, post){
+        if(err){
+            console.log(err);
+            return;
+        }
+        if(post.user == req.user.id){        //for comparison it will be converted into string by mongoose. so instead ._id we wrote .id
+            post.remove();
+            
+            Comment.deleteMany({post: req.params.id}, function(err){
+                return res.redirect('back');
+            });
+        }
+        else{
+            return res.redirect('back');
+        }
+    });
 };

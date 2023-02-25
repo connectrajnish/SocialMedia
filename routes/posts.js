@@ -9,5 +9,7 @@ router.get('/posts',postsController.posts);
 //to post something on the website after authentication
 router.post('/create',passport.checkAuthentication,postsController.create);
 
+router.get('/destroy/:id',passport.checkAuthentication, postsController.destroy);
+
 module.exports=router;
 
