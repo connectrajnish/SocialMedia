@@ -35,56 +35,7 @@
     <div id="posts-list-container"> 
         <ul>
             <%for(post of posts){%>
-                <li>
-                    <p>
-                        <%=post.content%>
-
-                        <%if(locals.user && locals.user.id == post.user.id){%>
-                        <small>
-                        <a href="/posts/destroy/<%=post.id%>">X</a>
-                        </small>
-                        <%}%>
-                    </p>
-                    <p>
-                    <small>
-                        <%=post.user.name%>
-                    </small>
-                    </p>
-
-                    <!-- Adding coment -->
-                    <div class="post-comments">
-
-                        <!-- to display comment -->
-                        <% /* %><div class="post-comments-list">
-                            <ul id="post-comments-<%= post._id %>">
-                                <% for (comment of post.comments){%>
-                                    
-                                <p>
-                                    <%= comment.content %>
-                                    <!-- To delete a comment -->
-                                    <!-- either the commenter or the poster can delete the comment -->
-                                    <%if(locals.user && (locals.user.id == comment.user.id || locals.user.id == post.id)){%>
-                                        <small>
-                                        <a href="/comments/destroy/<%=comment.id%>">X</a>
-                                        </small>
-                                        <%}%>
-                                    <br>
-                                    <small>
-                                        <%= comment.user.name %>
-                                    </small>
-                                </p>    
-                                <%} %>
-                            </ul>
-                        </div><% */ %>
-                    <%if(locals.user){%>
-                        <form action="/comments/create" method="post">
-                            <textarea name="content" cols="10" rows="2" placeholder="comment here..." required></textarea>
-                            <input type="hidden" name="postId" value="<%=post._id%>">        <!-- sending the post id for which comment need t be added -->
-                            <button type="submit">Comment</button>
-                        </form>
-                        <%}%>
-                    </div>
-                </li>
+                <%- include('_posts') -%>
             <%}%>
         </ul>
     </div>
