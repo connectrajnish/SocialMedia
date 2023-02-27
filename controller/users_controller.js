@@ -6,11 +6,23 @@ module.exports.profile = function(req,res){
     User.findById(req.params.id, function(err, user){
         return res.render('users',{
             title:'profile',
-            // user : 'req.user'        //page rendering without logging in
             profile_user : user
         });
     });
 };
+
+//update profile
+module.exports.update = function(req,res){
+    if(req.user.id == req.params.id){
+        User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
+            return res.redirect('back');
+        });
+        
+    }
+    else{
+        return res.status(401).send('Unauthorised');
+    }
+}
 
 module.exports.users = function(req,res){
     return res.render('users',{             // users is views name
@@ -71,7 +83,11 @@ module.exports.createSession = function(req, res){
     return res.render('users',{
         title: 'Profile Page',   //user is now available in locals, passed from passport config after authentication
         profile_user: {
-            'name': req.user.name,
+            'name'  : req.user.name,
+            'email' : req.user.email
+        },
+        user: {
+            'name'  : req.user.name,
             'email' : req.user.email
         }
     });

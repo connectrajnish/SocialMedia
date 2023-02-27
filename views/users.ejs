@@ -22,11 +22,24 @@
     <h1>
         User's Profile Page rendered from EJS.
     </h1>
+    
     <p>
         <%=profile_user.name%>
     </p>
     <p>
         <%=profile_user.email%>
     </p>
+    
+    <!-- profile is viewed only when user is logged in -->
+    <!-- so if ther user matches then show the update else only show the user info -->
+    <% if(profile_user.id == user.id){ %>
+        <form action="/users/update/<%=user.id%>" method="post">
+            <input type="text" name="name" placeholder="Your name" value="<%=profile_user.name%>" required>
+            <input type="text" name="email" placeholder="Your email" value="<%=profile_user.email%>" required>
+            <button value="submit">Submit</button>
+        </form>
+    <% } %>
+
+
 </body>
 </html>
