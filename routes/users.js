@@ -6,7 +6,7 @@ const passport = require('passport');
 const usersController=require('../controller/users_controller');
 
 // router.get('/',usersController.users);
-router.get('/profile', passport.checkAuthentication,usersController.profile); //profile page access is restricted through authentication
+router.get('/profile/:id', passport.checkAuthentication,usersController.profile); //profile page access is restricted through authentication
 
 router.get('/sign-in', usersController.signIn)
 router.get('/sign-up', usersController.signUp);

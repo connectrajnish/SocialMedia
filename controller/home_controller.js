@@ -1,6 +1,7 @@
 //export a function which will be publicly available to the route file
 
 const Post = require('../models/post');
+const User = require('../models/users');
 
 module.exports.home=function(req,res){                      //home, a name give to the function
     
@@ -33,10 +34,13 @@ module.exports.home=function(req,res){                      //home, a name give 
     //     }
     // })
     .exec(function(err, allPosts){
-            return res.render('home',{
-                title:'Home',
-                posts: allPosts
-            });
+            User.find({}, function(err, users){
+                return res.render('home',{
+                    title:'Home',
+                    posts: allPosts,
+                    all_users: users
+                });
+            })
     });
 };
 

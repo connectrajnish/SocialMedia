@@ -3,9 +3,12 @@
 const User = require('../models/users');
 
 module.exports.profile = function(req,res){
-    return res.render('users',{
-        title:'profile',
-        // user : 'req.user'        //page rendering without logging in
+    User.findById(req.params.id, function(err, user){
+        return res.render('users',{
+            title:'profile',
+            // user : 'req.user'        //page rendering without logging in
+            profile_user : user
+        });
     });
 };
 
@@ -67,7 +70,7 @@ module.exports.createSession = function(req, res){
     // return res.redirect('/');
     return res.render('users',{
         title: 'Profile Page',   //user is now available in locals, passed from passport config after authentication
-        user : {
+        profile_user: {
             'name': req.user.name,
             'email' : req.user.email
         }
