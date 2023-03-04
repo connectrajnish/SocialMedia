@@ -1,4 +1,5 @@
 const Comment = require('../models/comments');
+const { findById } = require('../models/post');
 const Post = require('../models/post');
 
 module.exports.create = function(req,res){
@@ -20,7 +21,6 @@ module.exports.create = function(req,res){
                     console.log('Error', err);
                     return;
                 }
-
                 //updating the array of post's comment
                 post.comments.push(comment);
                 post.save();
@@ -35,28 +35,28 @@ module.exports.create = function(req,res){
 
 module.exports.destroy = function(req, res){
     //check if the comment actually exists or not
-    Comment.findById(req.body.postId, function(err, comment){
+    Comment.findById(req.params.id, async function(err, comment){
         if(err){
             console.log(err);
             return;
         }
         if(comment){
             //if the comment is found
-            const idOfpostToDelete = comment.post;
+            const post = await Post.findById(comment.post);
 
             //either the commenter or the poster can delete the comment
-            if(comment.user == req.user.id || idOfpostToDelete.user == req.user.id){
+            if(comment.user == req.user.id || post.user == req.user.id){
                 comment.remove();
                 
                 //pull out the comment Id from a list of comment 
                 //$pull native mongodb syntax fo command line interface given by mongoose as well
-                Post.findByIdAndUpdate(idOfpostToDelete, {$pull: {comments: req.params.id}, function(err, post){
+                Post.findByIdAndUpdate(post.id, {$pull: {comments: req.params.id}, function(err, post){
                     return res.redirect('back');
                 }});
             }    
         }
-        else{
-            return res.redirect('back');
-        }
+        
+        return res.redirect('back');
+        
     });
 }

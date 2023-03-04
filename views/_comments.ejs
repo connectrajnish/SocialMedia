@@ -3,9 +3,9 @@
         <%= comment.content %>
         <!-- To delete a comment -->
         <!-- either the commenter or the poster can delete the comment -->
-        <%if(locals.user && (locals.user.id == comment.user.id || locals.user.id == post.id)){%>
+        <%if(locals.user && (locals.user.id == comment.user.id || locals.user.id == post.user.id)){%>
             <small>
-            <a href="/comments/destroy/<%=comment.id%>">X</a>
+            <a href="/comments/destroy/<%= comment.id %>">X</a>
             </small>
             <%}%>
         <br>

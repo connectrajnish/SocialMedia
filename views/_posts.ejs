@@ -3,9 +3,9 @@
         <%=post.content%>
 
         <%if(locals.user && locals.user.id == post.user.id){%>
-        <small>
-        <a href="/posts/destroy/<%=post.id%>">X</a>
-        </small>
+            <small>
+            <a href="/posts/destroy/<%=post.id%>">X</a>
+            </small>
         <%}%>
     </p>
     <p>
@@ -18,13 +18,13 @@
     <div class="post-comments">
 
         <!-- to display comment -->
-        <% /* %><div class="post-comments-list">
+        <div class="post-comments-list">
             <ul id="post-comments-<%= post._id %>">
                 <% for (comment of post.comments){%>
                     <%- include('_comments') -%>
                 <%} %>
             </ul>
-        </div><% */ %>
+        </div>
     <%if(locals.user){%>
         <form action="/comments/create" method="post">
             <textarea name="content" cols="10" rows="2" placeholder="comment here..." required></textarea>
