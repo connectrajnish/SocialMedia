@@ -50,7 +50,8 @@ module.exports.destroy = function(req, res){
                 
                 //pull out the comment Id from a list of comment 
                 //$pull native mongodb syntax fo command line interface given by mongoose as well
-                Post.findByIdAndUpdate(post.id, {$pull: {comments: req.params.id}, function(err, post){
+                await Post.findByIdAndUpdate(post.id, {$pull: {comments: req.params.id}, function(err, post){
+                    console.log('Document updated');
                     return res.redirect('back');
                 }});
             }    
