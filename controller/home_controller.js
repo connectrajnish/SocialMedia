@@ -6,25 +6,26 @@ const Comment = require('../models/comments');
 
 module.exports.home= async function(req,res){                      //home, a name give to the function
     
-    let all_posts = await Post.find({})
-    .populate('user')
-    .populate({
-        path: 'comments',
-        populate: {
-            path: 'user'
-        }
-    });
+    try{
+        let all_posts = await Post.find({})
+        .populate('user')
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'user'
+            }
+        });
 
-    let all_users = await User.find({});
+        let all_users = await User.find({});
 
-    return res.render('home',{
-        title:'Home',
-        posts: all_posts,
-        users: all_users
-    }); 
+        return res.render('home',{
+            title:'Home',
+            posts: all_posts,
+            users: all_users
+        });
+    }
+    catch(err){
+        console.log(err);
+        return;
+    } 
 };
-
-// .populate([{
-//     path : 'comments',
-    
-// }])

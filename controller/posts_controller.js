@@ -35,21 +35,21 @@ redirect back
 
 
 */
-module.exports.destroy = function(req,res){
-    Post.findById(req.params.id, function(err, post){
-        if(err){
-            console.log(err);
-            return;
-        }
+module.exports.destroy = async function(req,res){
+    try{
+        let post = await Post.findById(req.params.id);
         if(post.user == req.user.id){        //for comparison it will be converted into string by mongoose. so instead ._id we wrote .id
             post.remove();
             
-            Comment.deleteMany({post: req.params.id}, function(err){
-                return res.redirect('back');
-            });
+            await Comment.deleteMany({post: req.params.id});
+            return res.redirect('back');
         }
         else{
             return res.redirect('back');
         }
-    });
+    }
+    catch(err){
+        console.log(err);
+        return;
+    }
 };
