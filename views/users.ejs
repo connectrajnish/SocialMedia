@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%=title%></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
 </head>
 <body>
     <header>
@@ -19,8 +21,10 @@
             
         </ul>
     </header>
+    
+    
     <h1>
-        User's Profile Page rendered from EJS.
+        User's Profile Page
     </h1>
     
     <p>
@@ -40,6 +44,18 @@
         </form>
     <% } %>
 
-
+    <% if(flash.success && flash.success.length > 0){ %>
+        new Noty({
+            text: '<%= flash.success %>',
+            animation: {
+                open: 'animated bounceInRight', // Animate.css class names
+                close: 'animated bounceOutRight' // Animate.css class names
+            },
+            type : 'success',
+            layout : 'topRight',
+            timeout : 1500
+        }).show();
+    <%}%>
+    </script>
 </body>
 </html>

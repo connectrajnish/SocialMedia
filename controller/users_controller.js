@@ -79,7 +79,7 @@ module.exports.create = function(req,res){
 
 //sign in and create a session for the user
 module.exports.createSession = function(req, res){
-    // return res.redirect('/');
+    req.flash('success', 'logged in successfully');
     return res.render('users',{
         title: 'Profile Page',   //user is now available in locals, passed from passport config after authentication
         profile_user: {
@@ -89,7 +89,8 @@ module.exports.createSession = function(req, res){
         user: {
             'name'  : req.user.name,
             'email' : req.user.email
-        }
+        },
+        // success: 'logged in successfully'
     });
 };
 
@@ -99,6 +100,7 @@ module.exports.destroySession = function(req,res){
         if (err) { 
             console.log(err);
             return res.redirect('/'); }
-      });   
+      });
+    req.flash('success', 'logged out successfully');   
     return res.redirect('/users/sign-in');
 }

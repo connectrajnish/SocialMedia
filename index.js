@@ -27,7 +27,8 @@ const MongoStore = require('connect-mongo')(session);   //express session is an 
 //     debug: true
 //   }, function(err, result) { /*...*/ });
 
-
+const flash = require('connect-flash');
+const customMware = require('./config/middlware');
 //parses incoming requests with urlencoded payloads
 app.use(express.urlencoded({ extended: true}));
 
@@ -67,6 +68,9 @@ app.use(passport.session());
 //it'll check if session cookie is present or not, acts as middleware
 //so whenever any request is coming in this middleware will be called and users will be set in locals and hence user will be accessible in views
 app.use(passport.setAuthenticatedUser);
+
+app.use(flash());
+app.use(customMware.setFlash);
 
 //add a middleware module for all the routes using express router
 app.use('/',require('./routes')); //by default it takes index.js file or can be written as './routes/index'

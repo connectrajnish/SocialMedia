@@ -164,3 +164,12 @@ create route and action then delete button in view with authorization checks ena
 
 as our codebase grows the number of lines in a file grows so we can distribute the larger file into smaller file
   so we can create partials for larger files
+
+flash messages
+  install connect-flash
+  gets stored in session cookie and cleared with next requeste
+  so use it as middleware after the session cookie is eastablished
+  go to controllers and as request succeds or fails set message
+  to take out the response before returning and set to the locals
+  this can be done via passing an argument in the response or via creating our own middleware
+  
