@@ -43,7 +43,7 @@
             <button value="submit">Submit</button>
         </form>
     <% } %>
-
+    <script>
     <% if(flash.success && flash.success.length > 0){ %>
         new Noty({
             text: '<%= flash.success %>',
@@ -52,6 +52,20 @@
                 close: 'animated bounceOutRight' // Animate.css class names
             },
             type : 'success',
+            layout : 'topRight',
+            timeout : 1500
+        }).show();
+    <%}%>
+
+    // for error
+    <% if(flash.error && flash.error.length > 0){ %>
+        new Noty({
+            text: '<%= flash.error %>',
+            animation: {
+                open: 'animated bounceInRight', // Animate.css class names
+                close: 'animated bounceOutRight' // Animate.css class names
+            },
+            type : 'eroor',
             layout : 'topRight',
             timeout : 1500
         }).show();
