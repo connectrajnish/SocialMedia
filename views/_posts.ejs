@@ -26,7 +26,7 @@
             </ul>
         </div>
     <%if(locals.user){%>
-        <form action="/comments/create" method="post">
+        <form action="/comments/create" id="new-comment-form" method="post">
             <textarea name="content" cols="10" rows="2" placeholder="comment here..." required></textarea>
             <input type="hidden" name="postId" value="<%=post._id%>">        <!-- sending the post id for which comment need t be added -->
             <button type="submit">Comment</button>
