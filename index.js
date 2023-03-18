@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: true}));
 //setting up view engine
 app.set('view engine','ejs');
 app.set('views','./views');
-
+app.use(express.static('./assets'));
 //add express-session as middleware
 //mongo store is used to store the session cookie in the DB
 app.use(session({

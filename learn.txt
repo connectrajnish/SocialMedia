@@ -173,3 +173,15 @@ flash messages
   to take out the response before returning and set to the locals
   this can be done via passing an argument in the response or via creating our own middleware
   
+Converting to AJAX
+  so that after posting or commenting whole page doesn't loads up
+
+When an AJAX request is made, the following steps occur:
+  A JavaScript function is called to make an AJAX request to the server.
+  The function sends an XMLHttpRequest object to the server, along with any data that needs to be sent with the request.
+  The server receives the request and processes it. It may generate some data in response to the request.
+  The server sends a response back to the client, usually in the form of JSON or XML data.
+  The client receives the response and processes it. This may involve updating part of the web page with new data or performing some other action.
+  The AJAX function is called again to make another request, or the function is finished and control is returned to the user.
+  Overall, AJAX allows for data to be exchanged between the client and the server without requiring the entire web page to be reloaded. This allows for a more responsive and interactive user experience, as well as improved performance and bandwidth usage.
+  

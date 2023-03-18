@@ -8,12 +8,14 @@ module.exports.home= async function(req,res){                      //home, a nam
     
     try{
         let all_posts = await Post.find({})
+        .sort('-createdAt')
         .populate('user')
         .populate({
             path: 'comments',
             populate: {
                 path: 'user'
-            }
+            },
+            options: { sort: { createdAt: -1 } } // Sort comments by createdAt date in descending order    
         });
 
         let all_users = await User.find({});

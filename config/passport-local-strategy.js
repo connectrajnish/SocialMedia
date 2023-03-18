@@ -8,11 +8,12 @@ const User = require('../models/users');
 //authentication using passport
 // tell passport to use this loacl strategy i.e. middleware
 passport.use(new LocalStrategy({
-        usernameField: 'email'  //the unique thing, usernameField is a default syntax
+        usernameField: 'email',  //the unique thing, usernameField is a default syntax
+        passReqToCallback: true //allows to let us pass the 'req' parameter to callback function
     },
     //the callback function
     //done is a function which handles request is successfull or not etc. and report to passport js
-    function(email, password, done){
+    function(req,email, password, done){
         //find a user and eastablish the identity
         User.findOne({email:email}, function(err, user){
             if(err){
@@ -20,7 +21,7 @@ passport.use(new LocalStrategy({
                 return done(err);
             }
             if(!user || user.password!=password){
-                console.log('Invalid username/password');
+                req.flash('error','Invalid username/password');
                 return done(null,false);    //error null, but authentication fails
             }
             return done(null, user);        //it will be returned to serializer
