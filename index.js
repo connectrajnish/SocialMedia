@@ -36,6 +36,10 @@ app.use(express.urlencoded({ extended: true}));
 app.set('view engine','ejs');
 app.set('views','./views');
 app.use(express.static('./assets'));
+
+//make uploads path available to the browser
+app.use('/uploads', express.static(__dirname + '/uploads'));
+
 //add express-session as middleware
 //mongo store is used to store the session cookie in the DB
 app.use(session({

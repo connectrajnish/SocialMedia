@@ -1,6 +1,8 @@
 //it will export various users action, basically a collection of differnt routes under users page
 
 const User = require('../models/users');
+const fs = require('fs');
+const path = require('path');
 
 module.exports.profile = function(req,res){
     User.findById(req.params.id, function(err, user){
@@ -23,6 +25,12 @@ module.exports.update = async function(req,res){
 
                 //check if the user uploaded any file or just updating name or email
                 if(req.file){
+
+                    //check if there's an previous avatar
+                    if(user.avatar){
+                        fs.unlinkSync(path.join(path.join(__dirname, '..', user.avatar)));
+                    }
+
                     //saving the path of the uploaded file into the avatar field of the user
                     user.avatar = User.avatarPath + '/' + req.file.filename;
                 }
@@ -101,12 +109,14 @@ module.exports.createSession = function(req, res){
         profile_user: {
             'name'  : req.user.name,
             'email' : req.user.email,
-            'id': req.user._id
+            'id': req.user._id,
+            'avatar' : req.user.avatar
         },
         user: {
             'name'  : req.user.name,
             'email' : req.user.email,
-            'id': req.user._id
+            'id': req.user._id,
+            'avatar' : req.user.avatar
         },
         // success: 'logged in successfully'
     });

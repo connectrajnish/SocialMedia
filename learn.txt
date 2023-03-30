@@ -194,4 +194,14 @@ File Upload Using Multer
       assign the path
       define diskstorage i.e. path and name of file
       make a field in the model and keep the type as string and link this field with the path
-
+      to display the image on the profile page
+        make available the folder in index.js route
+        on the profile fetch the image
+  sumary of Multer
+  install multer and import multer and path in the schema of user
+  declare path like AVATAR_PATH = path.join('/upload/users/avatars');
+  declare the field in the schema
+  define diskstorage which tells destination and filename
+  update controller accordingly
+  make the path available in index and load in the form
+  remove/archive the previous and upload the newer
