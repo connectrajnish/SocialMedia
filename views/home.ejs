@@ -66,7 +66,7 @@
             $.ajax({
                 method: 'post',
                 url: '/posts/create',
-                data: newPostForm.serialize(),
+                data: newPostForm.serialize(),  //convert a form's data into a string representation that can be easily sent to a server via an HTTP request, typically using AJAX.
                 success: function(data){
                     let newPost = newPostDom(data.data.post);
                     $('#posts-list-container').prepend(newPost);
@@ -146,7 +146,7 @@
             url: $(this).prop('href'),
             success: function(data){
                     $(`#post-${data.data.post_id}`).remove();
-                },
+            },
             error: function(err){
                     console.log(err);
             }
@@ -155,13 +155,33 @@
     
 
 }
-{
-    let newCommentForm = $('#new-comment-form');
+// {
+//     let createComment = function(){
+//         let newCommentForm = $('#new-comment-form');
 
-    newCommentForm.submit(function(e){
-        e.preventDefault();
-    });
-}
+//         newCommentForm.submit(function(e){
+//             e.preventDefault();
+            
+//             $.ajax({
+//                 method: 'post',
+//                 url: '/comments/create',
+//                 data: newCommentForm.serialize(),
+//                 success: function(data){
+//                     let newComment = newCommentDom(data.data.content, 'Raj');
+//                     console.log(data);
+//                 },
+//                 error: function(err){
+//                     console.log(err);
+//                 }
+//             });
+//         });
+//     }
+//     let newCommentDom = function(){
+        
+//     };
+//     createComment();
+// }
+
     </script>
 </body>
 </html>

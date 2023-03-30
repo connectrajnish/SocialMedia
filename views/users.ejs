@@ -37,13 +37,14 @@
     <!-- profile is viewed only when user is logged in -->
     <!-- so if ther user matches then show the update else only show the user info -->
     <% if(profile_user.id == user.id){ %>
-        <form action="/users/update/<%=user.id%>" method="post">
+        <form action="/users/update/<%=profile_user.id%>" enctype="multipart/form-data" method="post">
             <input type="text" name="name" placeholder="Your name" value="<%=profile_user.name%>" required>
             <input type="text" name="email" placeholder="Your email" value="<%=profile_user.email%>" required>
+            <input type="file" name="avatar" placeholder="Profile Picture">
             <button value="submit">Submit</button>
         </form>
     <% } %>
-    <script>
+    <!-- <script>
     <% if(flash.success && flash.success.length > 0){ %>
         new Noty({
             text: '<%= flash.success %>',
@@ -70,6 +71,6 @@
             timeout : 1500
         }).show();
     <%}%>
-    </script>
+    </script> -->
 </body>
 </html>

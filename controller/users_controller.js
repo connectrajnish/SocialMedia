@@ -12,12 +12,28 @@ module.exports.profile = function(req,res){
 };
 
 //update profile
-module.exports.update = function(req,res){
+module.exports.update = async function(req,res){
     if(req.user.id == req.params.id){
-        User.findByIdAndUpdate(req.params.id, req.body, function(err, user){
-            return res.redirect('back');
-        });
-        
+        try{
+            let user = await User.findById(req.params.id);
+            User.uploadedAvatar(req, res, function(err){
+                if(err){console.log('******Multer Error: ', err)}
+                user.name = req.body.name;
+                user.email = req.body.email;
+
+                //check if the user uploaded any file or just updating name or email
+                if(req.file){
+                    //saving the path of the uploaded file into the avatar field of the user
+                    user.avatar = User.avatarPath + '/' + req.file.filename;
+                }
+                user.save();
+                return res.redirect('back');
+            });
+        }
+        catch(err){
+            console.log(err);
+            return res.redirect('back')
+        }
     }
     else{
         return res.status(401).send('Unauthorised');
@@ -84,11 +100,13 @@ module.exports.createSession = function(req, res){
         title: 'Profile Page',   //user is now available in locals, passed from passport config after authentication
         profile_user: {
             'name'  : req.user.name,
-            'email' : req.user.email
+            'email' : req.user.email,
+            'id': req.user._id
         },
         user: {
             'name'  : req.user.name,
-            'email' : req.user.email
+            'email' : req.user.email,
+            'id': req.user._id
         },
         // success: 'logged in successfully'
     });

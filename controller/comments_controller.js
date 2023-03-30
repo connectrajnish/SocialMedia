@@ -16,6 +16,15 @@ module.exports.create = async function(req,res){
             //updating the array of post's comment
             post.comments.push(comment);
             post.save();
+            if(req.xhr){
+                
+                return res.status(200).json({
+                    data:{
+                        content: comment
+                    }
+                });
+            }
+
             res.redirect('back');
         }
     }   

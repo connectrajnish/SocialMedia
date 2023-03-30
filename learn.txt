@@ -185,3 +185,13 @@ When an AJAX request is made, the following steps occur:
   The AJAX function is called again to make another request, or the function is finished and control is returned to the user.
   Overall, AJAX allows for data to be exchanged between the client and the server without requiring the entire web page to be reloaded. This allows for a more responsive and interactive user experience, as well as improved performance and bandwidth usage.
   
+
+File Upload Using Multer
+  gives option to send files other than text
+  for diskstorage we need to give where to save and what will be the filename 
+  centralized approach of uploading file can be created and we can create individually too but individually for users's profile and user's post can alos be a good option as they may have some differnet settings
+      req in the models and req path module as well
+      assign the path
+      define diskstorage i.e. path and name of file
+      make a field in the model and keep the type as string and link this field with the path
+
